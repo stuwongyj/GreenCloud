@@ -6,7 +6,7 @@ ROOT_DIR=`pwd`
 TRACES_DIR=$ROOT_DIR/traces
 SCRIPTS_DIR=$ROOT_DIR/src/scripts
 BUILD_DIR=$ROOT_DIR/build
-SCHEDULER="Green" # Selects data center scheduler. Possible choice: "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS"
+SCHEDULER="Temperature" # Selects data center scheduler. Possible choice: "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS"
 TOPOLOGY="three-tier debug"
 DEADLINE=5
 

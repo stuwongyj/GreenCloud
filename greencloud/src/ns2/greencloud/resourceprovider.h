@@ -134,7 +134,7 @@ protected:
 	void detachSource(ProviderOutAgent* tcp_agent);
 
 
-
+	//ResourceProvider
 	bool started_;
 	int status_;
 	Event event_;

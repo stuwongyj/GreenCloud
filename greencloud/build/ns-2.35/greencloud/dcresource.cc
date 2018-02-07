@@ -60,6 +60,7 @@ double DcResource::getPower(){
 	double* utilization = new double[n];
 	utilization[0] = getUtilization();
 	double result =  specification->getPowerModel()->estimate(n,utilization);
+	//std::cout << result << std::endl;
 	delete utilization;
 	return result;
 }

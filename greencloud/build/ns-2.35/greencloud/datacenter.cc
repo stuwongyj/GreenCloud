@@ -364,8 +364,11 @@ void DataCenter::computeLoad()
 		avgLoadMem 	+= (*iter)->getResTypeUtil(Memory);
 		avgLoadStor += (*iter)->getResTypeUtil(Storage);
 		avgPower += ((DcHost*)(*iter))->eCurrentConsumption_;
+		//std::cout << "avfPower=" << ((DcHost*)(*iter))->eCurrentConsumption_ << std::endl;
 
 	}
+	TemperatureModel::update(host_list);
+
 
 	for (iter = vm_list.begin(); iter!=vm_list.end(); iter++)
 	{
@@ -396,7 +399,7 @@ int DataCenter::configureResource(DcResource* confRes, const char* spec_name){
 	int result = 1;
 	std::string test = spec_name;
 	for (iter = resource_specification_list.begin(); iter!=resource_specification_list.end(); iter++)
-	{
+	{	//std::cout <<"powermodel=" << (*iter)->getPowerModel()->name_ << std::endl;
 		if((*iter)->name_==test){
 			result = 0;
 			break;

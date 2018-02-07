@@ -47,7 +47,6 @@ void VM::setHost(ResourceProvider * newHost){host = newHost;};
 
 
 void VM::addResource(DcResource* res){
-
 	ResourceProvider::addResource(res);
 	res_demands.push_back(new ResDemand(*res,res));
 

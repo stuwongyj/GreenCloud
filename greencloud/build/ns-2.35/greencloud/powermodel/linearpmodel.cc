@@ -62,6 +62,7 @@ double LinearPModel::estimate(int size, double* predictors){
 		double result = coefficients[size];
 		for(int i = 0; i < size; i++){
 			result += predictors[i] * coefficients[i];
+			//std::cout << "result= " << result << std::endl;
 		}
 		return result;
 	} else {

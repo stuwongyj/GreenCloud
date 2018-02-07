@@ -169,11 +169,11 @@ for {set k 0} {$k < $top(NServers)} {incr k} {
 #		$hosts_($k) add-resource $DCResStor($k)
 	}
 		  
-	} 
+	  } 
 	default	{
 	#Commodity
 	#Computing	
-		$DCenter configure-resource $DCResCPU($k) "Commodity processor 4 cores"
+		$DCenter configure-resource $DCResCPU($k) "Nominal processor"
 		#Memory
 		set DCResMem($k) [new DcResource]
 		$DCenter configure-resource $DCResMem($k) "Nominal 8GB memory"
@@ -280,7 +280,7 @@ for {set k 0} {$k < $top(NServers)} {incr k} {
 	
 	#VCPU
 	set VDCResCPU($k) [new CPU]
-	$DCenter configure-vresource $VDCResCPU($k) "Nominal vcpu 4 core"
+	$DCenter configure-vresource $VDCResCPU($k) "Nominal vcpu"
 	$vms_($k) add-resource $VDCResCPU($k)
 	
 	#VMem

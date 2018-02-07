@@ -111,8 +111,12 @@ void DcHost::setCurrentConsumption()
 	}
 	if((eDNS_enabled_) && (idle)){
 		eCurrentConsumption_ = 0;
+		//std::cout << "idle" << eCurrentConsumption_ << std::endl;
 	} else {
+		//std::cout << "powermodel(dchost)= " << powerModel->name_<<std::endl;
 		eCurrentConsumption_ = powerModel->estimate(4,predictors);
+		//std::cout << "dchost" << eCurrentConsumption_ << std::endl;
+		//std::cout << "--------------" << std::endl;
 	}
 	delete[] predictors;
 }
@@ -121,10 +125,8 @@ void DcHost::eUpdate()
 {
 	/* Get time spent since last update */
 	double etime = (Scheduler::instance().clock() - eLastUpdateTime_)/3600;	/* time in hours */
-
 	eConsumed_ += etime * eCurrentConsumption_;
 	eLastUpdateTime_ = Scheduler::instance().clock();
-
 }
 
 void DcHost::addResource(DcResource* res){

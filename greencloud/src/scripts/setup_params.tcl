@@ -7,7 +7,7 @@
 #set dc(target_load) 0.30		; # Fixed value or set as parameter: 
 set dc(target_load)	[lindex $argv 0]; # Targeted data center load in percent 
 
-set dc(scheduler)   [lindex $argv 5];		; # Possible choice: "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS" # Selects data center scheduler
+set dc(scheduler)   [lindex $argv 5];		; # Possible choice: "Temperature" "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS" # Selects data center scheduler
 $defaultRNG seed    [lindex $argv 4];
 
 # **********************************

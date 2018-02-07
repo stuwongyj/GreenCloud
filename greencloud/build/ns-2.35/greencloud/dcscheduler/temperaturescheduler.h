@@ -11,13 +11,14 @@
 #include "dcscheduler.h"
 #include "powermodel/temperaturemodel.h"
 
+extern double atime;
+
 class TemperatureScheduler : public DcScheduler{
 public:
 	TemperatureScheduler();
 	virtual ~TemperatureScheduler();
 	virtual TskComAgent* scheduleTask(CloudTask* task, std::vector<ResourceProvider* > providers);
 	std::vector<double> temperature_model_list;
-	const double scheduledTemp;
 
 };
 

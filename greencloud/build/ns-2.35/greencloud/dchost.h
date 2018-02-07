@@ -21,6 +21,7 @@
 #include "powermodel/linearpmodel.h"
 #include "powermodel/powermodel.h"
 
+
 class DcRack;
 
 

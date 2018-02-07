@@ -8,6 +8,7 @@
 #include "resourcespec.h"
 #include "dcresource.h"
 #include "powermodel/powermodel.h"
+#include "powermodel/temperaturemodel.h"
 #include "vmmigration.h"
 #include "dcscheduler/dcscheduler.h"
 #include "dcscheduler/greenscheduler.h"
