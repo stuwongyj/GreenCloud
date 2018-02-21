@@ -422,6 +422,7 @@ double ResourceProvider::getCurrentLoad()
 {
 	double nominal_mips = 0;
 	double current_mips = 0;
+	int i=0;
 	std::vector <DcResource*>::iterator cpu_iter;
 	for(cpu_iter=resource_list[Computing].begin(); cpu_iter != resource_list[Computing].end(); cpu_iter++){
 		DcResource* res = *cpu_iter;
@@ -430,7 +431,6 @@ double ResourceProvider::getCurrentLoad()
 		current_mips += cpu->getCurrentMIPS();
 	}
 	currentLoad_ = current_mips/nominal_mips;
-
 	return currentLoad_;
 }
 

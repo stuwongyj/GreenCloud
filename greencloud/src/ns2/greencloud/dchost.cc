@@ -113,10 +113,7 @@ void DcHost::setCurrentConsumption()
 		eCurrentConsumption_ = 0;
 		//std::cout << "idle" << eCurrentConsumption_ << std::endl;
 	} else {
-		//std::cout << "powermodel(dchost)= " << powerModel->name_<<std::endl;
 		eCurrentConsumption_ = powerModel->estimate(4,predictors);
-		//std::cout << "dchost" << eCurrentConsumption_ << std::endl;
-		//std::cout << "--------------" << std::endl;
 	}
 	delete[] predictors;
 }

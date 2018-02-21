@@ -60,7 +60,7 @@ double Capacity::getValueRecursive(){
 	double result = value;
 	std::vector<Capacity*>::iterator iter;
 	if(!virtual_capacities.empty()){
-		for(iter = virtual_capacities.begin(); iter!=virtual_capacities.end(); iter ++){
+		for(iter = virtual_capacities.begin(); iter!=virtual_capacities.end(); iter++){
 			result += (*iter)->getValueRecursive();
 		}
 	}

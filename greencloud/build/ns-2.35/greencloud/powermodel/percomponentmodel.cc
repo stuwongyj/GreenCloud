@@ -51,7 +51,7 @@ double PerComponentModel::estimate(int size, double* predictors){
 	std::vector<DcResource*>::iterator iter;
 	double result = 0;
 	for(iter = modeled_components_.begin(); iter != modeled_components_.end(); iter++){
-		//std::cout << (*iter)->specification->getPowerModel()->name_ << "= " << (*iter)->getPower() << std::endl;
+		//std::cout << "model= " << (*iter)->specification->getPowerModel()->name_ << std::endl;
 		result+=(*iter)->getPower();
 	}
 	//std::cout << "----------------" << std::endl;

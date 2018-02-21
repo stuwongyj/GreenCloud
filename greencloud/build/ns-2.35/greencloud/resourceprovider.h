@@ -36,6 +36,8 @@ class VmMigrationSink;
 
 
 class ResourceProvider : public Handler {
+friend class TemperatureScheduler;
+friend class RoundRobinsScheduler;
 public:
 	ResourceProvider();
 	virtual ~ResourceProvider();

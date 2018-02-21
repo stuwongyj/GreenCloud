@@ -113,7 +113,6 @@ double CPU::getCurrentMIPS(){
 	for(iter= cores_schedulers_.begin();
 			iter != cores_schedulers_.end();
 			iter++){
-
 		result += (*iter)->getCurrentMIPSRecursive();
 	}
 	return result;

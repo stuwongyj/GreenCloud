@@ -22,8 +22,9 @@ TskComAgent* RoundRobinsScheduler::scheduleTask(CloudTask* task, std::vector<Res
 //	for(iter = providers.begin() ; iter != providers.end(); iter++){
 //		std::cout << ((DcHost*)(*iter))->eConsumed_ << std::endl;
 //	}
-//	std::cout << "----------" << std::endl;
-	int j = task->id_ % providers.size();
 
+	int j = task->id_ % providers.size();
+	if(providers.at(j)->resource_utilization[Computing] >= 0.4){
+	std::cout << "j= " << j << " util= " << providers.at(j)->resource_utilization[Computing]  <<  std::endl;}
 	return (providers.at(j)->getTskComAgent());
 }

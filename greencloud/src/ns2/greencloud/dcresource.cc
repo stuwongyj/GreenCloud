@@ -45,11 +45,10 @@ int DcResource::setSpecification(ResourceSpec* resspec){
 
 double DcResource::getUtilization(){
 	double free = 0;
-
+	int i=0;
 	std::vector<Capacity>::iterator iter;
 	for(iter=capacity.begin(); iter!= capacity.end();iter++){
 		free += iter->getValueRecursive();
-
 	}
 	return 1-(free/total_cap);
 }
@@ -59,8 +58,9 @@ double DcResource::getPower(){
 	int n = 1;
 	double* utilization = new double[n];
 	utilization[0] = getUtilization();
+	//std::cout << "util1= " << utilization[0] << " model= " << specification->getPowerModel()->name_ << std::endl;
 	double result =  specification->getPowerModel()->estimate(n,utilization);
-	//std::cout << result << std::endl;
+	//std::cout << "-----------------------" << std::endl;
 	delete utilization;
 	return result;
 }

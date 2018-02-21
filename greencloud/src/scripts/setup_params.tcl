@@ -66,7 +66,7 @@ set task(type)		"HPC"				;# can be HPC, balanced, or comm (only HPC support righ
 
 switch $task(type) {
   default {						;# HPC - computationally intensive
-    set task(mips)		300000			;# [MIPS] 10^6 Million instructions
+    set task(mips)		300000 		;# [MIPS] 10^6 Million instructions
     set task(memory)		[lindex $argv 2]	;# [Byte] of required used RAM
     set task(storage)		0			;# [Byte] of required disk space
     set task(size)		8500			;# [Byte] 8500 B of task input size
@@ -75,7 +75,7 @@ switch $task(type) {
   }
 }
 
-set task(outputsize)	250000				;# Size of output on task completion
+set task(outputsize)	25000				;# Size of output on task completion
 
 #set task(outputsize)	5500				;# Size of output on task completion
 

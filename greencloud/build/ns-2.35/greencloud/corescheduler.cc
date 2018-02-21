@@ -288,7 +288,9 @@ void CoreScheduler::updateTskList(double c_mips)
 }
 
 void CoreScheduler::updateTskList(){
+	//std::cout << "test= " << this->current_mips_ << std::endl;
 	updateTskList(this->current_mips_);
+	//std::cout << "--------------" << std::endl;
 }
 
 void CoreScheduler::setComputingRate()

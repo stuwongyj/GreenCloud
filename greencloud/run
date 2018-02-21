@@ -6,9 +6,9 @@ ROOT_DIR=`pwd`
 TRACES_DIR=$ROOT_DIR/traces
 SCRIPTS_DIR=$ROOT_DIR/src/scripts
 BUILD_DIR=$ROOT_DIR/build
-SCHEDULER="Temperature" # Selects data center scheduler. Possible choice: "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS"
+SCHEDULER="RoundRobin" # Selects data center scheduler. Possible choice: "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS"
 TOPOLOGY="three-tier debug"
-DEADLINE=5
+DEADLINE=6
 
 # NOTE: this must match between ./run and ./scripts/postProcessTraceFiles.sh
 RESULTS_DIR_PREFIX=simulation
@@ -89,7 +89,7 @@ runNumber=1
 
 
 # Data center average load
-for load in  "0.3" # "0.0001" "0.1" "0.2" "0.3" "0.4" "0.5" "0.6" "0.7" "0.8" "0.9" "1.0"
+for load in  "0.5" # "0.0001" "0.1" "0.2" "0.3" "0.4" "0.5" "0.6" "0.7" "0.8" "0.9" "1.0"
 do
 #for deadline in "1" "2" "5" "10" "20"
 #do

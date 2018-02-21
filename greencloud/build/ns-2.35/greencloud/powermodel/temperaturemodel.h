@@ -19,7 +19,7 @@ public:
 
 	TemperatureModel();
 	virtual ~TemperatureModel();
-	static std::vector<double> getTemperature(int count);
+	static std::vector<double> getTemperature();
 	static void update(std::vector<ResourceProvider* > providers);
 };
 
