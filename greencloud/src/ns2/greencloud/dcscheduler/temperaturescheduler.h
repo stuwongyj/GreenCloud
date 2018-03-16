@@ -19,7 +19,6 @@ public:
 	virtual ~TemperatureScheduler();
 	virtual TskComAgent* scheduleTask(CloudTask* task, std::vector<ResourceProvider* > providers);
 	std::vector<double> temperature_model_list;
-
 };
 
 

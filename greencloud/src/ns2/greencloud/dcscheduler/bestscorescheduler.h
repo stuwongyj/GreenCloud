@@ -16,6 +16,7 @@ public:
 	BestScoreScheduler();
 	virtual ~BestScoreScheduler();
 	virtual TskComAgent* scheduleTask(CloudTask* task, std::vector<ResourceProvider* > providers);
+
 private:
 	virtual double calculateScore(ResourceProvider* rp) = 0;
 };

@@ -3,7 +3,7 @@
 # ---------------------------------------------------------
 
 # SWITCHES
-
+#debug,1,3,48
 switch $sim(dc_type) {
   "three-tier high-speed" {
     set top(NCore)		2			;# Number of L3 Switches in the CORE network
@@ -14,8 +14,8 @@ switch $sim(dc_type) {
   "three-tier debug" {
     set top(NCore)		1			;# Number of L3 Switches in the CORE network
     set top(NAggr)		[expr 2*$top(NCore)]	;# Number of Switches in AGGREGATION network 
-    set top(NAccess)		3			;# Number switches in ACCESS network per pod
-    set top(NRackHosts)		48			;# Number of Hosts on a rack
+    set top(NAccess)		2			;# Number switches in ACCESS network per pod
+    set top(NRackHosts)		10			;# Number of Hosts on a rack
   }
   "three-tier heterogenous debug" {
     set top(NCore)		1			;# Number of L3 Switches in the CORE network

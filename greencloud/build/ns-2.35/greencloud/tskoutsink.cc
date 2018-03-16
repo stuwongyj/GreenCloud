@@ -45,6 +45,7 @@ void TskOutSink::recv(Packet* pkt, Handler* h)
 //		std::cout << "Task id:" << recvTskObj->id_ << "exits the DC at: "<< Scheduler::instance().clock() <<"\n";
 		recvTskObj->info_->finalizeDcExitTime(Scheduler::instance().clock());
 		poa_->tryToSend();
+		//std::cout << "tskrecv= " << recvTskObj ->info_->getResourceProvider()->id_ << std::endl;
 		recvTskObj->info_->getResourceProvider()->getRootHost()->updateEnergyAndConsumption();
 	}
 	TcpSink::recv(pkt,h);

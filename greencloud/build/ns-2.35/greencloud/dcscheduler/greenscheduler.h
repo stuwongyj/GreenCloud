@@ -15,6 +15,7 @@ public:
 	GreenScheduler();
 	virtual ~GreenScheduler();
 	virtual TskComAgent* scheduleTask(CloudTask* task, std::vector<ResourceProvider* > providers);
+	std::vector<double> green_temperature_list;
 };
 
 #endif /* GREENSCHEDULER_H_ */

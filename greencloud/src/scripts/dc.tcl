@@ -232,7 +232,7 @@ if { $vm(static_virtualization) == 1 } {
 puts "VM static configuration..."
 # Creating TaskComAgents
 # Create Agents, equal to no of VMs
-set test1 [expr 20*$top(NServers)]
+set test1 [expr 2*$top(NServers)]
 for {set k 0} {$k < $test1 } {incr k} {
 	set vmtskcomagnt_C_($k) [new Agent/TskComAgent]
 	$vmtskcomagnt_C_($k) set packetSize_ 1500
@@ -244,7 +244,7 @@ for {set k 0} {$k < $test1 } {incr k} {
 # Three-tier and three-tier high-speed
 # Attach Agents to L1 switches equally
 set NTSwitches $top(NCore)
-set m [expr 20*$top(NAccess)*$top(NRackHosts)]
+set m [expr 2*$top(NAccess)*$top(NRackHosts)]
 for {set j 0} {$j < $top(NCore) } {incr j} {
    for {set jj 0} {$jj < $m } {incr jj} {
 	   set m_pos [expr $m*$j+$jj]
@@ -257,7 +257,7 @@ for {set k 0} {$k < $test1} {incr k} {
 	
 	# Create task receivers
 	set vmtsksink_($k) [new Agent/TskComSink]
-	set test [expr $k%4 ]
+	set test [expr $k%$top(NServers)]
 	$ns attach-agent $servers_($test) $vmtsksink_($k)
 
 	# Task output connections

@@ -357,6 +357,8 @@ void DataCenter::computeLoad()
 	double avgLoadMem = 0;
 	double avgLoadStor = 0;
 	double avgPower = 0;
+	int i=0;
+
 	for (iter = host_list.begin(); iter!=host_list.end(); iter++)
 	{
 
@@ -365,31 +367,13 @@ void DataCenter::computeLoad()
 		avgLoadStor += (*iter)->getResTypeUtil(Storage);
 		avgPower += ((DcHost*)(*iter))->eCurrentConsumption_;
 	}
-	TemperatureModel::update(host_list);
-
-	int i=0;
-	double result1=0,result2=0,result3=0,result4=0;
+	double a=0;
 	for (iter = vm_list.begin(); iter!=vm_list.end(); iter++)
 	{
-				(*iter)->getResTypeUtil(Computing);
+				a+=(*iter)->getResTypeUtil(Computing);
 				(*iter)->getResTypeUtil(Memory);
 				(*iter)->getResTypeUtil(Storage);
-				if(i%4 == 0){
-					result1+=(*iter)->getResTypeUtil(Computing);
-				}else if(i%4 == 1){
-					result2+=(*iter)->getResTypeUtil(Computing);
-				}else if(i%4 == 2){
-					result3+=(*iter)->getResTypeUtil(Computing);
-				}else
-					result4+=(*iter)->getResTypeUtil(Computing);
-				i++;
 	}
-	std::cout << "result1= " << result1/20.0 << " result2= " << result2/20.0
-			<< "result3= " << result3/20.0 << " result4= " << result4/20.0 << std::endl;
-//	std::cout << "---------------" << std::endl;
-
-
-
 	avgLoad_ = avgLoad / host_list.size();
 	avgLoadMem_= avgLoadMem / host_list.size();
 	avgLoadStor_= avgLoadStor / host_list.size();

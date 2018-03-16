@@ -131,8 +131,6 @@ void CoreScheduler::startTaskExecution(CloudTask* tskobj) {
 CloudTask* CoreScheduler::removeTaskAlloc( std::vector<TaskAlloc*>::iterator& iter,bool executed)
 {
 	CloudTask* result = (*iter)->cloudTask;
-	this->provider->updateEnergyAndConsumption();
-
 	(*iter)->cloudTask->removeTaskAlloc(*iter);
 	if(executed){
 		iter = tasks_alloc_list_.erase(iter);
@@ -142,17 +140,21 @@ CloudTask* CoreScheduler::removeTaskAlloc( std::vector<TaskAlloc*>::iterator& it
 		//was never executed, so cannot finish successfully
 		iter = tasks_alloc_assigned_.erase(iter);
 	}
+	//std::cout << "removeid=" << this->provider->id_ << std::endl;
+	this->provider->updateEnergyAndConsumption();
 	return result;
 }
 
 void CoreScheduler::removeTaskAlloc( TaskAlloc* ta)
 {
-	this->provider->updateEnergyAndConsumption();
+
 	tskAllocFailed_++;
 	tasks_alloc_list_.erase(remove(tasks_alloc_list_.begin(),tasks_alloc_list_.end(),ta),
 			tasks_alloc_list_.end()); /*erase-remove idiom*/
 	tasks_alloc_assigned_.erase(remove(tasks_alloc_assigned_.begin(),tasks_alloc_assigned_.end(),ta),
 			tasks_alloc_assigned_.end()); /*erase-remove idiom*/
+	//std::cout << "awayid=" << this->provider->id_ << std::endl;
+	this->provider->updateEnergyAndConsumption();
 }
 
 void CoreScheduler::removeFailedTaskAlloc(std::vector<TaskAlloc*>::iterator& iter,bool executed)

@@ -15,6 +15,7 @@ public:
 	RoundRobinsScheduler();
 	virtual ~RoundRobinsScheduler();
 	virtual TskComAgent* scheduleTask(CloudTask* task, std::vector<ResourceProvider* > providers);
+	std::vector <double> round_temperature_list;
 };
 
 #endif /* ROUNDROBINSCHEDULER_H_ */

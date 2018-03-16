@@ -19,8 +19,8 @@ public:
 
 	TemperatureModel();
 	virtual ~TemperatureModel();
-	static std::vector<double> getTemperature();
-	static void update(std::vector<ResourceProvider* > providers);
+	static std::vector<double> getTemperature(int providers_size);
+	static void update(ResourceProvider* providers, double eConsumptionRate);
 };
 
 

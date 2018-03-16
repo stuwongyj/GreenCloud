@@ -5,18 +5,21 @@
  *      @author Guzek:Mateusz
  */
 
+#include <fstream>
 #include "resourceprovider.h"
 #include "vm.h"
 #include "tskcomsink.h"
 #include "dchost.h"
+
+
 
 double ResourceProvider::MTU=1500.0;
 double ResourceProvider::useful_bytes=1460.0;
 double ResourceProvider::uplink_overhead=ResourceProvider::MTU/ResourceProvider::useful_bytes; // used to include the tcp headers of uplink communication
 
 
-ResourceProvider::ResourceProvider() : id_(0), ntasks_(0), currentTemperature_(0.0),
-		currentLoad_ (0.0), currentLoadMem_(0.0), currentLoadStor_(0.0), currentLoadNet_(0.0),
+ResourceProvider::ResourceProvider() : id_(0), ntasks_(0), currentLoad_ (0.0),
+		currentLoadMem_(0.0), currentLoadStor_(0.0), currentLoadNet_(0.0), currentTemperature_(0.0),
 		eDVFS_enabled_(0.0), tskFailed_(0),tskComAgent(NULL), 	host(NULL), started_(false), eventTime(DBL_MAX)
 {
 
@@ -134,7 +137,7 @@ int ResourceProvider::tryToAllocate(ResourceConsumer * rc){
 	return true;
 }
 
-bool ResourceProvider::releaseAllocation(ResourceConsumer * rc){
+bool ResourceProvider::releaseAllocation (ResourceConsumer * rc){
 	if((*rc).res_demands.empty()){
 		std::cerr << "Nothing to release \n";
 		return true;
@@ -199,7 +202,6 @@ DcHost* ResourceProvider::getRootHost(){
 bool ResourceProvider::addVM(VM* newVm){
 
 	this->updateEnergyAndConsumption();
-
 	if(tryToAllocate(newVm)){
 		((newVm))->setHost(this);
 		hosted_vms_.push_back(newVm);
@@ -227,42 +229,46 @@ bool ResourceProvider::removeVM(VM* vm){
 
 void ResourceProvider::recv(ResourceConsumer *rcobj)
 {
-	this->updateEnergyAndConsumption();
-	if(rcobj->isTask==true){
-		std::vector<CloudTask*>::iterator iter;
-		CloudTask* tskobj = (CloudTask*) rcobj;
+	{
+		//std::ofstream fa("output7.csv",std::ios_base::app | std::ios_base::out);
+		if(rcobj->isTask==true){
+			std::vector<CloudTask*>::iterator iter;
+			CloudTask* tskobj = (CloudTask*) rcobj;
 
-		ntasks_ ++;			// update total number of the received tasks
-
-		if(tskobj->scheduled_==false){
-			if(trySchedulingTsk(tskobj)==false){
-				tskobj->fail(this);
-//								std::cout << "Unscheduled task failed due to insufficient resources";
-				return;
-			}
-		}
-		std::vector <CoreScheduler*>::iterator core_s;
-		std::vector <DcResource*>::iterator cpu_iter;
-
-		/*If it is posible to allocate:*/
-		if(tryToAllocate(tskobj)){
-			for(cpu_iter=resource_list[Computing].begin(); cpu_iter != resource_list[Computing].end(); cpu_iter++){
-				CPU* cpu = (CPU*) (*cpu_iter);
-				for(core_s=cpu->cores_schedulers_.begin(); core_s != cpu->cores_schedulers_.end(); core_s++){
-					(*core_s)->startTaskExecution(tskobj);
+			ntasks_ ++;			// update total number of the received tasks
+			if(tskobj->scheduled_==false){
+				if(trySchedulingTsk(tskobj)==false){
+					tskobj->fail(this);
+	//								std::cout << "Unscheduled task failed due to insufficient resources";
+					return;
 				}
 			}
-			/*Otherwise task fails!*/
+			std::vector <CoreScheduler*>::iterator core_s;
+			std::vector <DcResource*>::iterator cpu_iter;
+
+			/*If it is posible to allocate:*/
+			if(tryToAllocate(tskobj)){
+				for(cpu_iter=resource_list[Computing].begin(); cpu_iter != resource_list[Computing].end(); cpu_iter++){
+					CPU* cpu = (CPU*) (*cpu_iter);
+					for(core_s=cpu->cores_schedulers_.begin(); core_s != cpu->cores_schedulers_.end(); core_s++){
+						(*core_s)->startTaskExecution(tskobj);
+					}
+				}
+				/*Otherwise task fails!*/
+			} else {
+				tskobj->fail(this);
+				std::cout << "Task failed due to insufficient resources";
+				return;
+			}
+
 		} else {
-			tskobj->fail(this);
-			std::cout << "Task failed due to insufficient resources";
+			std::cerr <<"It is not a task!";
 			return;
 		}
-
-	} else {
-		std::cerr <<"It is not a task!";
-		return;
 	}
+	//std::cout << "recvid= " << this->id_ << "recv" << std::endl;
+	this->updateEnergyAndConsumption();
+
 }
 
 

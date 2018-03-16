@@ -15,7 +15,7 @@ switch $sim(dc_type) {
     set top(NCore)		1			;# Number of L3 Switches in the CORE network
     set top(NAggr)		[expr 2*$top(NCore)]	;# Number of Switches in AGGREGATION network 
     set top(NAccess)		2			;# Number switches in ACCESS network per pod
-    set top(NRackHosts)		2			;# Number of Hosts on a rack
+    set top(NRackHosts)		25			;# Number of Hosts on a rack
   }
   "three-tier heterogenous debug" {
     set top(NCore)		1			;# Number of L3 Switches in the CORE network

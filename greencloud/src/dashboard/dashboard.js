@@ -202,7 +202,7 @@ var startSubSection = function(container, sectionName) {
         .appendTo(container);
 
 }
-
+//        drawChart(graphContainer, loadFactor, "energySummary", DATA_DISPLAY_TYPE.PIE);
 var drawChart = function(parentContainer, loadFactor, dataSourceName, dataDisplayType) {
     //add to groupedData
     var data = rawData[loadFactor][dataSourceName];
@@ -377,7 +377,7 @@ var showPieChart = function(container, loadFactor, dataGroupKey) {
                     }    
                 }
             },
-            legend: {show: false},
+            legend: {show: true},
         }
     );
 };

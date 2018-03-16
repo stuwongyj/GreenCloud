@@ -20,6 +20,7 @@
 #include "resourceprovider.h"
 #include "powermodel/linearpmodel.h"
 #include "powermodel/powermodel.h"
+#include "powermodel/temperaturemodel.h"
 
 
 class DcRack;

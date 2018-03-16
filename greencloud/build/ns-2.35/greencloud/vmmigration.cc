@@ -77,7 +77,6 @@ VmMigration::~VmMigration() {
 void VmMigration::startMigration(){
 	migrated_vm_->getHost()->updateEnergyAndConsumption();
 	target_->updateEnergyAndConsumption();
-
 	if(target_->tryToAllocate(this)){
 		//		std::cerr << "Migration object successfully allocated on target.\n";
 	} else {

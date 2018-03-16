@@ -111,7 +111,6 @@ void DcHost::setCurrentConsumption()
 	}
 	if((eDNS_enabled_) && (idle)){
 		eCurrentConsumption_ = 0;
-		//std::cout << "idle" << eCurrentConsumption_ << std::endl;
 	} else {
 		eCurrentConsumption_ = powerModel->estimate(4,predictors);
 	}
@@ -136,5 +135,8 @@ void DcHost::addResource(DcResource* res){
 
 void DcHost::updateEnergyAndConsumption(){
 	setCurrentConsumption();
+	//std::cout << "e= " << eCurrentConsumption_ << std::endl;
+	//std::cout << "------------------------" << std::endl;
+	TemperatureModel::update(this, eCurrentConsumption_);
 	eUpdate();
 }
