@@ -8,7 +8,7 @@ SCRIPTS_DIR=$ROOT_DIR/src/scripts
 BUILD_DIR=$ROOT_DIR/build
 SCHEDULER="RoundRobin" # Selects data center scheduler. Possible choice: "Temperature" "Green" "RoundRobin" "Random" "HEROS" "RandDENS" "BestDENS"
 TOPOLOGY="three-tier debug"
-DEADLINE=2
+DEADLINE= 3
 
 # NOTE: this must match between ./run and ./scripts/postProcessTraceFiles.sh
 RESULTS_DIR_PREFIX=simulation
